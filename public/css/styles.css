@@ -7,7 +7,7 @@ h2 {
     max-width: 800px;
 }
 #workoutDay {
-    margin-left: 20px;
+    margin: 20px;
     padding: 10px;
     background-color: aliceblue;
 }
@@ -30,15 +30,23 @@ ul {
 #main {
     max-width: 800px;
 }
-#log-table th {
+.log-table th {
     text-align: center;
     padding: 4px 10px;
+    border: 1px solid lightgray;
 }
 
-#log-table td {
+.log-table td {
     border: 1px solid lightgray;
     padding: 2px 5px;
     background-color: white;
+}
+
+.rowHeader {
+    text-align: left;
+    padding: 4px 10px;
+    border: 1px solid lightgray;
+    
 }
 .info-note {
     font-size: smaller;
@@ -79,4 +87,5 @@ footer {
     position: fixed;
     top: 95vh;
     margin-left: 20px;
+    margin-top: 30px;
 }

@@ -8,16 +8,21 @@ class Workout extends Model
 {
     public static function dump($workouts = null)
     {
-        # Empty array that will hold all our book data
         $data = [];
         
         if (is_null($workouts)) {
             $workouts = self::all();
         }
         foreach ($workouts as $workout) {
-            $data[] = $workout->exercise . ' ' . $workout->sets . '  ' . $workout->reps;
+            $data[] = $workout->routine. ' ' . $workout->sets . '  ' . $workout->reps;
         }
         dump($data);
+    }
+    
+    #relationship method belongs to many routines
+    public function bodyparts()
+    {
+        return $this->belongsTo('App\Bodypart');
     }
 }
     

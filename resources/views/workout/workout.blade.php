@@ -29,30 +29,16 @@
             </ul>
         </fieldset>
     </form>
-    <!--<table id = 'log-table'>
-        <tr>
-            <th>Date</th><th>Exercise</th><th>Sets</th><th>Reps</th><th>Weight</th></tr>   
-            @foreach($workouts as $workout)
-                <tr>
-                    <td>{{$workout->date}}</td>
-                    <td>{{$workout->exercise}}</td>
-                    <td>{{$workout->sets}}</td>
-                    <td>{{$workout->reps}}</td>
-                    <td>{{$workout->weight}}</td>
-                </tr>
-            @endforeach
-    </table>-->
-    @foreach($dateviews as $dateview)
+    
+    
     <div id = 'workoutDay'>
-        <h4>{{ $dateview{0}->date  }}</h4>
-        <table id = 'log-table'>
-            <tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Weight</th></tr>
-            @foreach($dateview as $date)
-            <tr><td>{{ $date->exercise }}:</td><td>{{$date->sets}}</td><td>{{$date->reps}}</td><td>{{ $date->weight }}</td></tr>
+        <table class = 'log-table'>
+        <tr><th>Date</th><th>Routine</th><th>sets</th><th>reps</th><th>Weight</th><th>Bodypart</th></tr>
+            @foreach($workouts as $workout)
+            <tr><th class = 'rowHeader'>{{ $workout->date }}</th><td>{{ $workout->exercise }}</td><td>{{ $workout->sets }}</td><td>{{ $workout->reps }}</td><td>{{ $workout->weight }}</td><td>{{ $workout->bodypart_id }}</td></tr>
             @endforeach
         </table>
     </div>
-        @endforeach
 @endsection
             
-            
+                
