@@ -8,7 +8,7 @@ class BodypartsTableSeeder extends Seeder
 {
     public function run()
     {
-        $bodyparts = ['chest', 'back', 'shoulders', 'arms', 'legs'];
+        $bodyparts = ['none','chest', 'back', 'shoulders', 'arms', 'legs'];
         $count = count($bodyparts);
         
         foreach ($bodyparts as $bp)

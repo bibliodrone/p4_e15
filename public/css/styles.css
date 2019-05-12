@@ -11,6 +11,10 @@ h2 {
     padding: 10px;
     background-color: aliceblue;
 }
+
+#sets, #reps, #weight {
+    width: 70px;
+}
 .alert-danger {
     padding: 10px;
     padding-right: 40px;
@@ -22,9 +26,17 @@ h2 {
     list-style-position: outside;
     
 }
-ul {
+.listNoStyle li{
     list-style: none;
-    
+}
+
+.listblock li {
+    display: inline-block;
+}
+
+.alignLabel {
+    width: 170px;
+    margin:5px;
 }
 
 #main {

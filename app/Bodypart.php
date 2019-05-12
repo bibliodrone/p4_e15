@@ -11,4 +11,8 @@ class Bodypart extends Model
         return $this->hasMany('App\Workout');
     }
     //
+    public static function getParts()
+    {
+        return self::orderBy('id')->select(['body_part', 'id'])->get();
+    }
 }
