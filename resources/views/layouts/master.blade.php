@@ -9,17 +9,17 @@
 
     @yield("head")
 </head>
-
-<body>
-
+<body>    
     <header>
-        <h1>@yield('title')</h1>
-    </header>
-
-    <section>
+        <h2>My Workout Tracker</h2>
+   </header>
+    
+    <section id = "main">
         @yield("content")
     </section>
-
+     @if(session("returnMessage"))
+        <div class = "alert-popup">{{ session ("returnMessage")}}</div>
+    @endif
     <footer>
         &copy; {{date('Y')}} Gerald Walden
     </footer>

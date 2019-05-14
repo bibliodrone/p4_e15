@@ -15,8 +15,8 @@ class WorkoutsTableSeeder extends Seeder
     public function run()
     {
         $workouts = [
-            ['2019-04-15','bench-press', 2, 8, 135, 1],
-            ['2019-04-15','bench-press', 2, 8, 155, 1],
+            ['2019-04-15','bench-presses', 2, 8, 135, 1],
+            ['2019-04-15','bench-presses', 2, 8, 155, 1],
             ['2019-04-19', 'squats', 2, 5, 250, 1],
             ['2019-04-19', 'squats', 2, 5, 270, 1],
             ['2019-04-19', 'deadlifts', 3, 6, 275, 1],
@@ -38,7 +38,7 @@ class WorkoutsTableSeeder extends Seeder
             $workout->weight = $workoutData[4];
             
             switch($workout->exercise) {
-                case "bench-press":
+                case "bench-presses":
                     $workout->bodypart_id = 2;
                     break;
                 case "lat-pulldowns":
