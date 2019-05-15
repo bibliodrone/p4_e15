@@ -9,11 +9,17 @@ class WorkoutController extends Controller
 {   
     public function index()
     {
+        /*  Define exercises displayed in the log-update form's dropdown menu.
+            For now, the choices are limited to some of the most common exercises.
+            >>> Future: consider allowing user to enter custom names for exercises, 
+                or failing that, expand the list. 
+        */
         $validExercises = ["bench-presses", "lat-pulldowns", "deadlifts", "overhead-presses","biceps-curls", "dips", "squats", "lunges"];
-        //$workouts = Workout::with("bodyparts")->get();
-        $workouts = Workout::orderBy("date")->with("bodypart")->get();
         
-        //assign bodypart id based on exercise name...
+        $workouts = Workout::orderBy("date")->with("bodypart")->get();
+        $workouts = $workouts->sortByDesc("date");
+        
+        //assign bodypart id tag based on exercise name...
         foreach ($workouts as $workout) {
 
             $bodypart = $workout->bodypart;
@@ -26,12 +32,11 @@ class WorkoutController extends Controller
             "workouts" => $workouts,
             "validBodyparts" => $validBodyparts,
             "validExercises" => $validExercises,
-    ]); //. $result; 
+    ]);
         
     }
-    
-    
-    public function updateLog(Request $request)
+        
+    public function updateLog (Request $request)
     {    
         $request->validate([
             "date"=>"required|date",
@@ -41,7 +46,13 @@ class WorkoutController extends Controller
             "weight"=>"required|digits_between: 1, 999"
         ]);
         
+        /* The switch statement with the "bodypart id" is a bit convoluted but I set it up 
+           in this fashion to incorporate a pivot table relationship, linking a "bodypart id"
+           in the workouts table to a bodypart string in the bodyparts table. The "bodypart"
+           is sort of an automatically-assigned tag for the exercise entered by the user. 
+        "*/
         
+        /* Default 1 = 'none' */
         $bodypart_id = 1;
         
         switch($request->exercise) {
@@ -79,28 +90,38 @@ class WorkoutController extends Controller
         $workout->reps = $request->reps;
         $workout->weight = $request->weight;
         $workout->bodypart_id = $bodypart_id;
+        $workout->note = "";
         $workout->save();
         
-        $returnMessage = "Update Processed";
+        
+        $returnMessage = "Log Entry Added";
         
         return redirect("/")->with(["returnMessage"=>$returnMessage])->withInput();
     }
     
-    public function showResults(Request $request) 
+    public function note($id)
     {
-        /*$date = $request->session()->get("date", "");
-        $exercise = $request->session()->get("exercise", "");
-        $sets = $request->session()->get("sets", "");
-        $reps = $request->session()->get("reps", "");
-        $weight = $request->session()->get("weight", "");
+        $workout = Workout::find($id);
         
-        $validExercises = ["bench-presses", "lat-pulldowns", "deadlifts", "overhead-presses","biceps-curls", "dips", "squats", "lunges"];
-        $validBodyparts = Bodypart::orderBy("id")->select(["body_part", "id"])->get();*/
+        if (!$workout) {
+            $returnMessage = "Workout record not found";
+            return redirect ("/")->with(["returnMessage"=>$returnMessage]);
+        } else {
+            $editMessage = "Update information";
+            return redirect("/")->with(["editMessage"=>$editMessage, "workoutId" => $workout]);
+        }
+    }
+    
+    public function addNote(Request $request, $id) {
+        $request->validate(["note"=>"string"]);
         
-        $returnMessage = $request->session()->get("returnMessage", "no message");
-        return view("workout.workout")->with([
-                "returnMessage" => $returnMessage
-        ]);
+        $workout = Workout::find($id);        
+        $workout->note = $request->input("note");
+        $returnMessage = "Note '" . $workout->note . "' added.";
+        
+        $workout->save();
+        
+        return redirect("/")->with(["returnMessage"=>$returnMessage]);   
         
     }
     
@@ -111,12 +132,13 @@ class WorkoutController extends Controller
         if (!$workout) {
             $returnMessage = "Workout record not found";
             return redirect ("/")->with(["returnMessage"=>$returnMessage]);
-        }else{
+        } else {
             $deleteMessage = "Delete Row -- Are you sure?";
             return redirect("/")->with(["deleteMessage"=>$deleteMessage, "workoutId" => $workout]);
         
         }
     }
+    
     
     public function destroy($id)
     {

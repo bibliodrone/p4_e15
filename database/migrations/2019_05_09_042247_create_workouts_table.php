@@ -21,6 +21,7 @@ class CreateWorkoutsTable extends Migration
             $table->integer('sets');
             $table->integer('reps');
             $table->integer('weight');
+            $table->string('note');
         });
     }
 

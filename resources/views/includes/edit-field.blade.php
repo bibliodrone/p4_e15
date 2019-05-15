@@ -1,5 +1,7 @@
-@if(session("deleteMessage"))
-<div class = "alert-danger">
+@if(session("editMessage"))
+<!-- Used to add/edit the Note field -->
+<div>
+    <em>Add note to this entry:</em>
     <table class = "log-table">
         <tr><th>Date</th><th>Exercise</th><th>Sets</th><th>Reps</th><th>Weight</th></tr>
         <tr>
@@ -11,14 +13,15 @@
         </tr>
     </table>
     <hr>
-    <span>{{ session ("deleteMessage")}}</span>
-    <form method = "POST" action = "/delete/{{session("workoutId")->id}}">
-        {{ method_field("delete") }}
+    <!--<span>{{ session ("editMessage")}}</span>-->
+    <form method = "POST" action = "/addNote/{{session("workoutId")->id}}">
         {{ csrf_field() }}
-        <input type = "submit" class = "delete confirm" value = "Confirm Delete">
+        <label for = "note">Note: <input type = "text" name = "note"></label>
+        <input type = "submit" class = "confirm" value = "Save">
+        <span class = "delete confirm">
+            <a href = "/">Cancel</a>
+        </span>
     </form>
-    <div class = "cancel confirm">
-        <a href = "/">Cancel Delete</a>
-    </div>
+    
 </div>
 @endif

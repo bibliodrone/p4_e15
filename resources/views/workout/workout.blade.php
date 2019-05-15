@@ -1,16 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
-
-<!--<div id="main">
-    <h2>My Workout Tracker</h2>
-    @if(session("return-message"))
-    <div>{{ session ("return-message")}}</div>
-    @endif-->
     
     <p>Record Workout details or view past workouts.</p>
     <p>The 'Bodypart' column will be filled in automatically based on what exercise you choose.</p>
     <div id = "logUpdateForm">
+
+<!-- Form for creation of new workout log entry -->
+    
     <form id = "main-form" method = 'POST' action = '/update_log'>
         {{ csrf_field() }}
         <fieldset>
@@ -25,12 +22,6 @@
             <hr>
             <ul class = "listNoStyle">
                 <li>
-                     <!--<select name="system">
-                        <option value="tometric" {{ (old("system")=="tometric") ? "selected" : ""}} >Imperial to Metric   </option>
-                        <option value="toimperial" {{ (old("system")=="toimperial") ? "selected" : "" }}>Metric to Imperial  </option>
-                    </select>-->
-                    
-                    
                     <label for = "exercise" class = "labelLeft">Select exercise:
                         <select id = "exercise" name = "exercise">
                             <option></option>
@@ -75,30 +66,29 @@
                     </div>
                 </li>
             </ul>
-             <input type="submit" class="btn btn-primary" id="submitButton" value="Submit">
+            <div class = "center">
+                <input type="submit" class="btn btn-primary" id="submitButton" value="Submit">
+            </div>
         </fieldset>
     </form>
     </div>
-    <div class = "left-div">
-        <div id = "delete-note"> Click &#x26D4; to delete a row.</div>
+
+<!--Display the workout log. Get entries from database, populate "bodypart" column based upon exercise name, and correlate between Workout and Bodypart tables. 
+    Delete functionality is mediated through 'delete-message.blade (include)' which displays when a red icon is clicked. -->
+
+    <div class = "float-left-div">
         @include("includes.delete-message")
-        <div id = 'workoutDay'>
+        @include("includes.edit-field")
+        <div id = 'workout-day'>
             <table class = 'log-table'>
-            <tr><th class = "toprow"></th><th class = "toprow">Date</th><th class = "toprow">Exercise</th><th class = "toprow">Sets</th><th class = "toprow">Reps</th><th class = "toprow">Weight</th><th class = "toprow">Bodypart</th></tr>
+            <tr><th class = "toprow"></th><th class = "toprow">Date</th><th class = "toprow">Exercise</th><th class = "toprow">Sets</th><th class = "toprow">Reps</th><th class = "toprow">Weight</th><th class = "toprow">Bodypart</th><th>Note</th><th></th></tr>
                 @foreach($workouts as $workout)
-                <tr><td><a href = "/delete/{{$workout->id}}">&#x26D4;</a></td><th class = 'rowHeader'>{{ $workout->date }}</th><td>{{ $workout->exercise }}</td><td>{{ $workout->sets }}</td><td>{{ $workout->reps }}</td><td>{{ $workout->weight }}</td><td>{{ $workout->bodypart_id }}</td></tr>
+                <tr><td class = "delete-icon"><a href = "/delete/{{$workout->id}}">&#x26D4;</a></td><th class = 'rowHeader'>{{ $workout->date }}</th><td>{{ $workout->exercise }}</td><td>{{ $workout->sets }}</td><td>{{ $workout->reps }}</td><td>{{ $workout->weight }}</td><td>{{ $workout->bodypart_id }}</td><td>{{ $workout->note }}</td><td class = "note-icon"><a href = "/note/{{ $workout->id}}">&#x270D;</a></td></tr>
                 @endforeach
             </table>
-            <!--@if(count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif-->
         </div>
+        <div class = "form-note"> Click &#x26D4; to delete the accompanying row.</div>
+        <div class = "form-note"> Click &#x270D; to add a note to a row. </div>
     </div>
 @endsection
             

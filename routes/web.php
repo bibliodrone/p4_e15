@@ -16,8 +16,8 @@
 }); */
 
 Route::get('/', 'WorkoutController@index');
-Route::get('/log', 'WorkoutController@getLog');
-Route::get('/showResults', 'WorkoutController@showResults');
 Route::post('/update_log', 'WorkoutController@updateLog');
+Route::get('/note/{id}', 'WorkoutController@note');
+Route::post('/addNote/{id}', 'WorkoutController@addNote');
 Route::get('/delete/{id}', 'WorkoutController@delete');
 Route::delete('/delete/{id}', 'WorkoutController@destroy');

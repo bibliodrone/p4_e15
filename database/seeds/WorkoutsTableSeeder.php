@@ -36,6 +36,7 @@ class WorkoutsTableSeeder extends Seeder
             $workout->sets = $workoutData[2];
             $workout->reps = $workoutData[3];
             $workout->weight = $workoutData[4];
+            $workout->note = "";
             
             switch($workout->exercise) {
                 case "bench-presses":

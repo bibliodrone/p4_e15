@@ -2,13 +2,18 @@ h2, p {
     padding-left: 20px;
     
 }
+
+#submitButton {
+    margin-left: 30%;
+}
+
 #logUpdateForm {
     float:left;
     margin: 10px;
     width: 450px;
 }
-#workoutDay {
-    height: 400px;
+#workout-day {
+    min-height: 250px;
     resize: vertical;
     overflow: auto;
     float: left;
@@ -22,7 +27,7 @@ h2, p {
     clear: both;
 }
 
-.left-div {
+.float-left-div {
     float: left;
 }
 #sets, #reps, #weight {
@@ -36,12 +41,14 @@ h2, p {
 .alert-popup {
     font-size: larger;
     border: 2px solid blue;
-    background-color: yellow;
+    border-radius: 10px;
+    background-color: lightgoldenrodyellow;
     padding: 10px;
     position: fixed;  
     top: 10px;
     left: 500px;
 }
+
 .alert-danger {
     padding: 10px;
     border-radius: 5px;
@@ -74,7 +81,9 @@ h2, p {
     margin:5px;
 }
 
-
+.center {
+    text-align: center;
+}
 .log-table th {
     text-align: center;
     padding: 4px 10px;
@@ -100,9 +109,16 @@ h2, p {
     border: 1px solid lightgray;
     
 }
-#delete-note {
+.form-note {
     margin-left: 20px;
     font-weight: bold;
+}
+
+.delete-icon:hover, .note-icon:hover {
+    background-color: yellow;
+    font-size: larger;
+    padding: 0px;
+    padding-left: 2px;
 }
 
 .output{
@@ -139,22 +155,26 @@ li label {
     min-width: 25px;
 }
 
-.deleteConfirm{
-    margin: 5px;
-    padding: 1px 6px;
-    border-radius: 5px;
-    border: 2px solid gray;
-    width: 125px;
-    text-align: center
-}
-
 .cancel {
     background-color:aquamarine;
+    border-radius: 5px;
+    width: 125px;
+}
+
+.delete {
+    background-color:tomato;
 }
 
 .confirm {
-    background-color:tomato;
+    margin: 5px;
+    padding: 1px 6px;
+    border: 2px solid gray;
+    width: 125px;
+    text-align: center;
+    border-radius: 5px;
+    display: inline-block;
 }
+
 .cancel:hover {
     border-color:darkviolet;
 }
@@ -164,7 +184,7 @@ li label {
 }
 
 .confirm:hover {
-    background-color:red;
+    background-color:lightcoral;
     color:yellow;
     border-color: yellow;
 }
