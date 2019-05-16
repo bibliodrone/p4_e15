@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
-    
-    <h6>Record Workout details or view past workouts.</h6>
-    <p>The 'Bodypart' column will be filled in automatically based on what exercise you choose.</p>
+    <div class = "pageHeader">
+        <h6>Record Workout details or view past workouts.</h6>
+        <p>The 'Bodypart' column will be filled in automatically based on what exercise you choose.</p>
+    </div>
+        
     <div id = "logUpdateForm">
-
 <!-- Form for creation of new workout log entry -->
-    
     <form id = "main-form" method = 'POST' action = '/update_log'>
         {{ csrf_field() }}
         <fieldset>

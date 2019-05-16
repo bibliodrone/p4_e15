@@ -1,8 +1,17 @@
-h2, p {
+/*
+h2, h6, p {
     padding-left: 20px;
     
 }
-
+*/
+header h2 {
+    margin: 0px 20px;
+    padding: 5px;
+    background-color: lightcyan;
+}
+.pageHeader{
+    margin: 10px 20px;
+}
 #submitButton {
     margin-left: 30%;
 }
