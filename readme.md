@@ -22,7 +22,7 @@ I consulted Stack Overflow for information on the "option" tag and how to have a
 ## Code style divergences
 There may be a few inconsistencies in the use of single or double quotes. After reading the issues forum post about the quirks of how single-quoted strings are handled, I've decided to use double quotes from now on (except for nesting purposes, of course). 
 
-the nu HTML checker is still showing a warning for my page (shown below), but I've decided it is OK to leave for now. I will do a bit of research into what "using a polyfill" would entail 
+the nu HTML checker is still showing a warning for my page (shown below), but I've decided it is OK to leave for now. I will do a bit of research into what "using a polyfill" would entail. 
 
 `Warning: The date input type is not supported in all browsers. Please be sure to test, and consider using a polyfill.
 From line 32, column 17; to line 32, column 82
