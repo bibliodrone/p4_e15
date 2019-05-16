@@ -24,7 +24,7 @@
                 <li>
                     <label for = "exercise" class = "labelLeft">Select exercise:
                         <select id = "exercise" name = "exercise">
-                            <option hidden value></option>
+                            <option hidden value label></option>
                             @foreach ($validExercises as $ve)
                             <option value = "{{ $ve }}" {{ (old("exercise") == "$ve") ? "selected" : "" }}>{{$ve}}</option>
                             @endforeach
