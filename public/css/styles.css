@@ -6,7 +6,7 @@ h2, h6, p {
 */
 header h2 {
     margin: 0px 20px;
-    padding: 15px;
+    padding: 1  5px;
     background-color: lightcyan;
 }
 .pageHeader{
@@ -193,7 +193,7 @@ li label {
 }
 
 .confirm:hover {
-    background-color:lightcoral;
+    background-color:lightgreen;
     color:yellow;
     border-color: yellow;
 }
