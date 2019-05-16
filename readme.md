@@ -1,71 +1,34 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# Project 4
++ By: Gerry Walden
++ Production URL: <http://p4.geraldbrentwalden.me>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Feature summary
++ App has a simple interface that displays a form to record data about a weight-lifting workout, and beside that a view of the most
+recent entries, sorted by date/descending.
++ A string for "bodypart" will be added to the row automatically after the user submits their data. e.g.: the bench-press is a "chest" exercise. This could be thought of as an auto-generated tag. Part of the reason I did this was to display the pivot table functionality.
++ The user can click on an icon next to each row in the table, to delete the corresponding entry. 
++ After the workout log entry is added to the table, it will immediately display as the view refreshes. The user can at this point click the "note" icon to add a short text note to the workout entry (editing the 'note' column, which is blank when first generated).  
+  
+## Database summary
+There are really only two tables in the database. I realized that adding more was unnecessary and over-complicated for what I ended up creating.
++ Workout has a "belongs-to" relationship to Bodypart.
++ Bodypart has a "has-many" relationship to Workout.
 
-## About Laravel
+## Outside resources
+I consulted Stack Overflow for information on the "option" tag and how to have an initial blank option in my select input, that would pass HTML validation (option without "label" attr cannot be blank) but still trigger Laravel's validation mechanism for catching required fields. I remember this came up in the class video as well. I had to experiment a bit to see what would meet my needs, and the result was:
+    ''<option hidden value label = "Make a selection"></option>''
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Code style divergences
+There may be a few inconsistencies in the use of single or double quotes. After reading the issues forum post about the quirks of how single-quoted strings are handled, I've decided to use double quotes from now on (except for nesting purposes, of course). 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+the nu HTML checker is still showing a warning for my page (shown below), but I've decided it is OK to leave for now. I will do a bit of research into what "using a polyfill" would entail 
 
-## Learning Laravel
+==Warning: The date input type is not supported in all browsers. Please be sure to test, and consider using a polyfill.
+From line 32, column 17; to line 32, column 82
+          <input type = "date" name = "date" id = "date" value = 2019-01-01>↩
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost you and your team's skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Notes for instructor
+There are a lot of stylistic tweaks I would apply using Javascript, to make certain aesthetic and usability improvements. For instance, the way the "edit" and "delete" views pop into view and displace the table is not ideal. Also, there are a few cases where a div containing an '<a>' element is styled to match a nearby button, and I would want to attach a click event to those, so that clicking the div but not the 'a' tag inside it would still work to 'activate' the link, thus functioning in a more button-like manner. This is true for the 'delete' and 'edit' icons, as well -- the user has to click right on the <a> tag to activate those.
