@@ -2,7 +2,7 @@
 
 @section('content')
     
-    <p>Record Workout details or view past workouts.</p>
+    <h6>Record Workout details or view past workouts.</h6>
     <p>The 'Bodypart' column will be filled in automatically based on what exercise you choose.</p>
     <div id = "logUpdateForm">
 
@@ -16,7 +16,7 @@
                   $results = Workout::where('bodypart_id', '=', '1')->orderBy('date')->get();
             -->
                 <label for = "date">Date
-                <input type = "date" name = "date", value = {{old("date", "2019-01-01")}}>
+                <input type = "date" name = "date" id = "date" value = {{old("date", "2019-01-01")}}>
                 </label>
                 <div class = "alignErrors">@include('includes.error-field', ['fieldName' => 'date'])</div>
             <hr>
