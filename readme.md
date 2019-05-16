@@ -16,7 +16,7 @@ There are really only two tables in the database. I realized that adding more wa
 
 ## Outside resources
 I consulted Stack Overflow for information on the "option" tag and how to have an initial blank option in my select input, that would pass HTML validation (option without "label" attr cannot be blank) but still trigger Laravel's validation mechanism for catching required fields. I remember this came up in the class video as well. I had to experiment a bit to see what would meet my needs, and the result was:
-    ''<option hidden value label = "Make a selection"></option>''
+    `<option hidden value label = "Make a selection"></option>`
 
 
 ## Code style divergences
@@ -24,9 +24,9 @@ There may be a few inconsistencies in the use of single or double quotes. After 
 
 the nu HTML checker is still showing a warning for my page (shown below), but I've decided it is OK to leave for now. I will do a bit of research into what "using a polyfill" would entail 
 
-==Warning: The date input type is not supported in all browsers. Please be sure to test, and consider using a polyfill.
+`Warning: The date input type is not supported in all browsers. Please be sure to test, and consider using a polyfill.
 From line 32, column 17; to line 32, column 82
-          <input type = "date" name = "date" id = "date" value = 2019-01-01>↩
+          <input type = "date" name = "date" id = "date" value = 2019-01-01>↩`
 
 
 
